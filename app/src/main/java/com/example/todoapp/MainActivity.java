@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import org.apache.commons.io.FileUtils; //updated this import statement to get readlines to work
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<music> extends AppCompatActivity {
 
     List<String> items;
+
+
+    int nowPlaying = 0;
+    int[] trackList = new int[] {R.raw.slope};
 
     Button btnAdd;
     EditText etItem; //Text box
@@ -36,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ///////////////AUDIO/////////////
+        MediaPlayer music = MediaPlayer.create(this, trackList[nowPlaying]);
+        music.start();
+        //music.setLooping(true);
+
+        ///////////////LIST//////////////
         btnAdd = findViewById(R.id.btnAdd);
         etItem = findViewById(R.id.etItem);
         itemList = findViewById(R.id.itemsList);
@@ -104,4 +115,9 @@ public class MainActivity extends AppCompatActivity {
             items = new ArrayList<>();
         }
     }
+
+
+
+
+
 }
